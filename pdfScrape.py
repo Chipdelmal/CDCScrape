@@ -5,7 +5,10 @@ import pandas as pd
 from glob import glob
 import functions as fun
 
-(PATH_I, PATH_O) = ('./docs/', './tables/')
+(PATH_I, PATH_O) = (
+        '/home/chipdelmal/Documents/CDC/docs/',
+        '/home/chipdelmal/Documents/CDC/tables/'
+    )
 fNames = glob(PATH_I+'*.pdf')
 fName = 'TravelAssociatedCasesofZikaVirusinCA.pdf'
 for fName in fNames:
