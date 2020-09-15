@@ -1,4 +1,5 @@
 
+import ntpath
 import pandas as pd
 pd.options.mode.chained_assignment = None
 
@@ -30,3 +31,10 @@ def cleanupDF(table):
         df = df.drop('Total')
     # Return cleaned up DF
     return df
+
+def stripPath(fPath, ext='.pdf'):
+    return ntpath.basename(fPath).replace(ext, '')
+
+
+def stripPaths(fPaths, ext='.pdf'):
+    return [stripPath(fPath) for fPath in fPaths]

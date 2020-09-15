@@ -1,4 +1,5 @@
 
+import os
 import re
 import ntpath
 import camelot
@@ -13,16 +14,14 @@ import functions as fun
     )
 # Cycle through the PDFs -------------------------------------------------------
 fPaths = glob(PATH_I+'*.pdf')
-(fNum, fNames) = (
-        len(fNames),
-        [ntpath.basename(fName).replace('.pdf', '') for fName in fNames]
-    )
+(fNum, fNames) = (len(fPaths), fun.stripPaths(fPaths))
 print('- Storing files to {}'.format(PATH_O))
 for (i, fPath) in enumerate(fPaths):
     print('\t* ({}/{}) Processing {}'.format(i+1, fNum, fPath))
-    outFPath = PATH_O+fNames[i]+'.csv'
-    # Load file and parse tables -----------------------------------------------
+    # Check if the file already exists -----------------------------------------
+    outFPath = PATH_O+fNames[i]+'.csv
     outFExists = os.path.exists(outFPath)
+    # Load file and parse ------------------------------------------------------
     if (not outFExists or OVW):
         # Cleanup the table ----------------------------------------------------
         tables = camelot.read_pdf(fPath, pages='1-end')
@@ -30,5 +29,5 @@ for (i, fPath) in enumerate(fPaths):
         # Merge dataframes -----------------------------------------------------
         dfPre = pd.concat(dfs).dropna()
         dfPst = dfPre.applymap(fun.cleanCell)
-        dfPst.to_csv(outFName)
+        dfPst.to_csv(outFPath)
 print('- Finished!')
