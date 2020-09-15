@@ -3,6 +3,13 @@ import pandas as pd
 pd.options.mode.chained_assignment = None
 
 
+def cleanCell(cell):
+    clean = str(cell).replace('\n', '')
+    clean = clean.split(' ')[0]
+    clean = ''.join(filter(str.isdigit, clean))
+    return clean
+    
+
 def cleanupDF(table):
     df = table.df
     # Read and clean column names

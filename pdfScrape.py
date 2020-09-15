@@ -1,4 +1,5 @@
 
+import re
 import ntpath
 import camelot
 import pandas as pd
@@ -18,7 +19,5 @@ for fName in fNames:
     dfs = [fun.cleanupDF(table) for table in tables]
     # Merge dataframes --------------------------------------------------------
     dfPre = pd.concat(dfs).dropna()
-    dfPst = dfPre.apply(lambda x: x.str.replace('\n', ''))
+    dfPst = dfPre.applymap(fun.cleanCell)
     dfPst.to_csv(PATH_O+ntpath.basename(fName)[:-4]+'.csv')
-
-dfPre
