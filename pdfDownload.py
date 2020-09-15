@@ -3,7 +3,6 @@
 import requests
 import sources as so
 from datetime import date
-from selenium import webdriver
 
 (PATH_O, nids) = (
         '/home/chipdelmal/Documents/CDC/docs/',
