@@ -1,4 +1,4 @@
-# CDC Scrape
+# CDPH Scrape
 
 These scripts were created to scrape the monthly California Department of Public Health (CDPH) arbovirus case updates to CSV files for easy analysis.
 
