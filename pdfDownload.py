@@ -5,10 +5,9 @@ import sources as so
 from datetime import date
 from selenium import webdriver
 
-
-(nids, PATH_O) = (
-        ['DENV', 'CHIKV', 'ZIKV'],
-        '/home/chipdelmal/Documents/CDC/docs/'
+(PATH_O, nids) = (
+        '/home/chipdelmal/Documents/CDC/docs/',
+        ['DENV', 'CHIKV', 'ZIKV']
     )
 # Cycle through the diseases URLs -----------------------------------------------
 idsNum = len(nids)
@@ -23,4 +22,4 @@ for (i, nid) in enumerate(nids):
     today = date.today()
     with open('{}/{}_{}.pdf'.format(PATH_O, nid, str(today)[:-3]), 'wb') as f:
         f.write(response.content)
-print('- Finished!'.format(PATH_O))
+print('- Finished!')
