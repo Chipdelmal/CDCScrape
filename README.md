@@ -23,8 +23,8 @@ To install the required dependencies, run:
 pip install camelot-py pandas
 ```
 
-## Author
+## Authors
 
 <img src='https://raw.githubusercontent.com/Chipdelmal/MK8DLeaderboard/master/media/pusheen.jpg' height="130px" align="middle"><br>
 
-[Héctor M. Sánchez C.](https://chipdelmal.github.io/blog)
+[Héctor M. Sánchez C.](https://chipdelmal.github.io/blog), Tomás León
