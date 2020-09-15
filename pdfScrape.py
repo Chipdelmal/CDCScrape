@@ -6,23 +6,29 @@ import pandas as pd
 from glob import glob
 import functions as fun
 
-(PATH_I, PATH_O) = (
+(PATH_I, PATH_O, OVW) = (
         '/home/chipdelmal/Documents/CDC/docs/',
-        '/home/chipdelmal/Documents/CDC/tables/'
+        '/home/chipdelmal/Documents/CDC/tables/',
+        True
     )
 # Cycle through the PDFs -------------------------------------------------------
-fNames = glob(PATH_I+'*.pdf')
-fNum = len(fNames)
+fPaths = glob(PATH_I+'*.pdf')
+(fNum, fNames) = (
+        len(fNames),
+        [ntpath.basename(fName).replace('.pdf', '') for fName in fNames]
+    )
 print('- Storing files to {}'.format(PATH_O))
-for (i, fName) in enumerate(fNames):
+for (i, fPath) in enumerate(fPaths):
+    print('\t* ({}/{}) Processing {}'.format(i+1, fNum, fPath))
+    outFPath = PATH_O+fNames[i]+'.csv'
     # Load file and parse tables -----------------------------------------------
-    tables = camelot.read_pdf(fName, pages='1-end')
-    # print("Total tables extracted:", tables.n)
-    print('\t* ({}/{}) Processing {}'.format(i+1, fNum, fName))
-    # Cleanup the table --------------------------------------------------------
-    dfs = [fun.cleanupDF(table) for table in tables]
-    # Merge dataframes ---------------------------------------------------------
-    dfPre = pd.concat(dfs).dropna()
-    dfPst = dfPre.applymap(fun.cleanCell)
-    dfPst.to_csv(PATH_O+ntpath.basename(fName)[:-4]+'.csv')
+    outFExists = os.path.exists(outFPath)
+    if (not outFExists or OVW):
+        # Cleanup the table ----------------------------------------------------
+        tables = camelot.read_pdf(fPath, pages='1-end')
+        dfs = [fun.cleanupDF(table) for table in tables]
+        # Merge dataframes -----------------------------------------------------
+        dfPre = pd.concat(dfs).dropna()
+        dfPst = dfPre.applymap(fun.cleanCell)
+        dfPst.to_csv(outFName)
 print('- Finished!')

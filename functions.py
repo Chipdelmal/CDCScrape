@@ -8,7 +8,7 @@ def cleanCell(cell):
     clean = clean.split(' ')[0]
     clean = ''.join(filter(str.isdigit, clean))
     return clean
-    
+
 
 def cleanupDF(table):
     df = table.df
