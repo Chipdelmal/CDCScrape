@@ -28,5 +28,3 @@ for (i, fPath) in enumerate(fPaths):
         dfPst = dfPre.applymap(fun.cleanCell)
         dfPst.to_csv(outFPath)
 print('- Finished!')
-
-fPaths
