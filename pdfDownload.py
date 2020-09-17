@@ -6,10 +6,9 @@ from glob import glob
 import functions as fun
 from datetime import date
 
-(PATH_O, nids, OVW) = (
-        '/home/chipdelmal/Documents/CDC/docs/',
-        ['DENV', 'CHIKV', 'ZIKV'], False
-    )
+
+(USR, nids, OVW) = ('srv', ['DENV', 'CHIKV', 'ZIKV'], False)
+(PATH_O, _ ) = fun.selectPaths(USR)
 # Cycle through the diseases URLs -----------------------------------------------
 idsNum = len(nids)
 fPaths = glob(PATH_O+'*.pdf')

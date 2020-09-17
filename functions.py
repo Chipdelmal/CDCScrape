@@ -4,6 +4,20 @@ import pandas as pd
 pd.options.mode.chained_assignment = None
 
 
+def selectPaths(USR):
+    (pthDocs, pthTbls) = ('./docs/', './tables/')
+    if (USR == 'chipdelmal'):
+        (pthDocs, pthTbls) = (
+                '/home/chipdelmal/Documents/CDC/docs/',
+                '/home/chipdelmal/Documents/CDC/tables/'
+            )
+    if (USR == 'srv'):
+        (pthDocs, pthTbls) = (
+                '/RAID5/marshallShare/CDPH/docs/',
+                '/RAID5/marshallShare/CDPH/tables/'
+            )
+    return (pthDocs, pthTbls)
+
 def cleanCell(cell):
     clean = str(cell).replace('\n', '')
     clean = clean.split(' ')[0]
