@@ -1,0 +1,3 @@
+
+scp lab:/RAID5/marshallShare/CDPH/docs/*.pdf ~/Documents/CDC/docs/
+scp lab:/RAID5/marshallShare/CDPH/tables/*.csv ~/Documents/CDC/tables/

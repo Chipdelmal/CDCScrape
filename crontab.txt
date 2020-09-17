@@ -1,0 +1,2 @@
+0 7 15 * * /home/hector/miniconda3/bin/python /home/hector/CDPHScrape/pdfDownload.py srv
+1 7 15 * * /home/hector/miniconda3/bin/python /home/hector/CDPHScrape/pdfScrape.py srv
